@@ -1,0 +1,1 @@
+web: gunicorn ejemplo1Timo.wsgi
