@@ -1,0 +1,85 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Crear Usuarios</title>
+
+	<link rel="stylesheet" href="{% static 'css/base.css' %}">
+	<link rel="stylesheet" href="{% static 'css/vendor.css' %}">
+	<link rel="stylesheet" href="{% static 'css/main.css' %}"> 
+
+    <!-- script
+    	================================================== -->
+    	<script src="{% static 'js/modernizr.js' %}"></script>
+    	<script src="{% static 'js/pace.min.js' %}"></script>
+
+    <!-- favicons
+    	================================================== -->
+    	<link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    	<link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon"> 
+
+    </head>
+    <body>
+    	<section class="s-content">
+    		<div class="row masonry-wrap">
+    			<div class="masonry">
+
+    				<div class="grid-sizer">
+              <a href="{% url 'indexUser' %}"> Inicio </a>
+            </div>
+    				
+    				<h2>Consulta Usuarios</h2>
+              
+              <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                    <th>Fecha de Creacion</th>
+                    <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                {% if users %}
+
+                  {% for user in users %}
+                    <tr>
+                      <td>{{ user.id }}</td>
+                      <td>{{ user.nombre }}</td>
+                      <td>{{ user.apellido_paterno }}</td>
+                      <td>{{ user.apellido_materno }}</td>
+                      <td>{{ user.direccion }}</td>
+                      <td>{{ user.telefono }}</td>
+                      <td>{{ user.fecha_creacion }}</td>
+
+                      <td> <a class="btn--pill" href="{% url 'editar_user' user.id %}"> Editar </a> 
+
+                      <a class="btn--pill" href="{% url 'eliminar_user' user.id %}"> Eliminar </a> </td>
+
+                    </tr>
+                  {% endfor %}
+                {% else %}
+                  <h2>No hay usuarios</h2>
+                {% endif %}
+
+              </tbody>
+
+              </table>
+
+
+    			</div>
+    		</div>
+    	</section>
+
+    	
+    </body>
+    </html>
+
+
